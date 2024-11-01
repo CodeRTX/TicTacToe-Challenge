@@ -4,7 +4,7 @@ Welcome to the TicTacToeShowcase repository! This project showcases Tic-Tac-Toe 
 
 ## Features
 - **Java Implementation**: A console-based Tic-Tac-Toe game with AI opponent.
-- **HTML/CSS/JS Implementation**: A web-based Tic-Tac-Toe game with an attractive UI and AI opponent.
+- **HTML/CSS/JS Implementation**: A web-based Tic-Tac-Toe game with an interesting UI and AI opponent.
 
 ## Screenshots
 ![Java Game](snapshots/java_game.JPG)
