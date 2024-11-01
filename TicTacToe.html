@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic-Tac-Toe Challenge</title>
+    <style>
+       /* Updated Body Background with Animated Gradient */
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #FFDEE9, #B5FFFC);
+    animation: gradientShift 10s ease infinite;
+}
+
+@keyframes gradientShift {
+    0%, 100% { background: linear-gradient(135deg, #FFDEE9, #B5FFFC); }
+    50% { background: linear-gradient(135deg, #FEE140, #FA709A); }
+}
+
+/* Updated Game Container Styling */
+.game-container {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    width: 350px;
+}
+
+/* Title Styling */
+h1 {
+    color: #333;
+    font-size: 2em;
+    margin-bottom: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* Updated Board Styling */
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* Cell Styling with Hover Effects */
+.cell {
+    width: 100px;
+    height: 100px;
+    background: #f5f5f5;
+    border: none;
+    border-radius: 8px;
+    font-size: 2em;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.cell:hover {
+    background: #f2f2f2;
+    transform: translateY(-5px);
+}
+
+.controls button {
+    margin-top: 10px;
+}
+
+/* Control Buttons with Improved Styling */
+button {
+    padding: 10px 25px;
+    font-size: 1em;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+#reset {
+    background: #ff6b6b;
+    color: white;
+}
+
+#reset:hover {
+    background: #ee5253;
+}
+
+#mode {
+    background: #54a0ff;
+    color: white;
+}
+
+#mode:hover {
+    background: #2e86de;
+}
+
+/* Status Display */
+#status {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>Tic-Tac-Toe Challenge!</h1>
+        <div id="status">Player X's turn</div>
+        <div class="board" id="board">
+            <button class="cell" data-cell-index="0"></button>
+            <button class="cell" data-cell-index="1"></button>
+            <button class="cell" data-cell-index="2"></button>
+            <button class="cell" data-cell-index="3"></button>
+            <button class="cell" data-cell-index="4"></button>
+            <button class="cell" data-cell-index="5"></button>
+            <button class="cell" data-cell-index="6"></button>
+            <button class="cell" data-cell-index="7"></button>
+            <button class="cell" data-cell-index="8"></button>
+        </div>
+        <div class="controls">
+            <button id="reset">Reset Game</button>
+            <button id="mode">Switch to Bot Mode</button>
+        </div>
+    </div>
+
+    <script>
+        const board = document.getElementById('board');
+        const cells = document.querySelectorAll('[data-cell-index]');
+        const resetButton = document.getElementById('reset');
+        const modeButton = document.getElementById('mode');
+        const statusDisplay = document.getElementById('status');
+
+        let currentPlayer = 'X';
+        let gameState = ['', '', '', '', '', '', '', '', ''];
+        let gameActive = true;
+        let botMode = false;
+
+        const winningConditions = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+            [0, 4, 8],
+            [2, 4, 6]
+        ];
+
+        function handleCellClick(clickedCellEvent) {
+            const clickedCell = clickedCellEvent.target;
+            const clickedCellIndex = parseInt(clickedCell.getAttribute('data-cell-index'));
+            statusDisplay.style.color = currentPlayer === 'X' ? '#ff6b6b' : '#54a0ff';
+
+            if (gameState[clickedCellIndex] !== '' || !gameActive) return;
+
+            gameState[clickedCellIndex] = currentPlayer;
+            clickedCell.textContent = currentPlayer;
+            clickedCell.classList.add(currentPlayer.toLowerCase());
+
+            checkWin();
+            checkDraw();
+
+            if (gameActive) {
+                currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+                statusDisplay.textContent = `Player ${currentPlayer}'s turn`;
+
+                if (botMode && currentPlayer === 'O') {
+                    setTimeout(botMove, 500);
+                }
+            }
+        }
+
+        function botMove() {
+            const bestMove = minimax(gameState, 'O', -Infinity, Infinity).index;
+
+            gameState[bestMove] = currentPlayer;
+            cells[bestMove].textContent = currentPlayer;
+            cells[bestMove].classList.add(currentPlayer.toLowerCase());
+
+            checkWin();
+            checkDraw();
+
+            if (gameActive) {
+                currentPlayer = 'X';
+                statusDisplay.textContent = `Player ${currentPlayer}'s turn`;
+            }
+        }
+        
+        function minimax(board, player, alpha, beta) {
+    const availableMoves = board.reduce((acc, cell, index) => {
+        if (cell === '') acc.push(index);
+        return acc;
+    }, []);
+
+    // Base cases: to check if the board has a winning or draw state
+    if (checkWin(board, 'X', false)) {
+        return { score: -10 };
+    } else if (checkWin(board, 'O', false)) {
+        return { score: 10 };
+    } else if (availableMoves.length === 0) {
+        return { score: 0 };
+    }
+
+    let bestMove = null;
+    let bestScore = player === 'O' ? -Infinity : Infinity;
+
+    for (let i = 0; i < availableMoves.length; i++) {
+        const moveIndex = availableMoves[i];
+        board[moveIndex] = player;
+
+        // Recursive call to minimax
+        const result = minimax(board, player === 'O' ? 'X' : 'O', alpha, beta);
+        board[moveIndex] = ''; // Undo the move
+
+        const score = result.score;
+
+        if (player === 'O') {
+            if (score > bestScore) {
+                bestScore = score;
+                bestMove = { index: moveIndex, score: bestScore };
+            }
+            alpha = Math.max(alpha, bestScore);
+        } else {
+            if (score < bestScore) {
+                bestScore = score;
+                bestMove = { index: moveIndex, score: bestScore };
+            }
+            beta = Math.min(beta, bestScore);
+        }
+
+        if (alpha >= beta) break; // Prune unnecessary branches
+    }
+
+    return bestMove || { score: 0, index: availableMoves[0] };
+}
+
+        function checkWin(board = gameState, player = currentPlayer, updateGameState = true) {
+    for (let i = 0; i < winningConditions.length; i++) {
+        const [a, b, c] = winningConditions[i];
+        if (board[a] === player && board[a] === board[b] && board[a] === board[c]) {
+            if (updateGameState) {
+                statusDisplay.textContent = `Player ${player} wins!`;
+                gameActive = false;
+                cells[a].style.backgroundColor = '#4CAF50';
+                cells[b].style.backgroundColor = '#4CAF50';
+                cells[c].style.backgroundColor = '#4CAF50';
+            }
+            return true;
+        }
+    }
+    return false;
+}
+
+        function checkDraw() {
+            if (!gameState.includes('')) {
+                statusDisplay.textContent = "It's a draw!";
+                gameActive = false;
+            }
+        }
+
+        function resetGame() {
+            currentPlayer = 'X';
+            gameState = ['', '', '', '', '', '', '', '', ''];
+            gameActive = true;
+            statusDisplay.textContent = `Player ${currentPlayer}'s turn`;
+            cells.forEach(cell => {
+                cell.textContent = '';
+                cell.classList.remove('x', 'o');
+                cell.style.backgroundColor = '';
+            });
+        }
+
+        function toggleMode() {
+            botMode = !botMode;
+            modeButton.textContent = botMode ? 'Switch to Human Mode' : 'Switch to Bot Mode';
+            resetGame();
+        }
+
+        board.addEventListener('click', handleCellClick);
+        resetButton.addEventListener('click', resetGame);
+        modeButton.addEventListener('click', toggleMode);
+    </script>
+</body>
+</html>
