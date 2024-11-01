@@ -1,6 +1,6 @@
 # Tic-Tac-Toe Challenge
 
-Welcome to the TicTacToeShowcase repository! This project showcases Tic-Tac-Toe implementations in Java and HTML/CSS/JS, featuring both human vs. human and human vs. AI gameplay.
+Welcome to the TicTacToeShowcase repository! This project showcases Tic-Tac-Toe implementations in Java and HTML/CSS/JS, featuring both `human vs. human` and `human vs. AI` gameplay.
 
 ## Features
 - **Java Implementation**: A console-based Tic-Tac-Toe game with AI opponent.
