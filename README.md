@@ -8,6 +8,7 @@ Welcome to the TicTacToeShowcase repository! This project showcases Tic-Tac-Toe 
 
 ## Screenshots
 ![Java Game](snapshots/java_game.JPG)
+
 ![Web Game](snapshots/web_game.JPG)
 
 ## Getting Started
