@@ -12,7 +12,7 @@ Welcome to the TicTacToe-Challenge repository! This project showcases Tic-Tac-To
 
 ### Java Game
 
-![Java Console Game](snapshots/java_console_game.png)
+![Java Console Game](snapshots/java_console_game.jpg)
 
 ### Java UI Game
 
@@ -20,7 +20,7 @@ Welcome to the TicTacToe-Challenge repository! This project showcases Tic-Tac-To
 
 ### Web Game
 
-![Web Game](snapshots/web_game.png)
+![Web Game](snapshots/web_game.jpg)
 
 ## Getting Started
 
