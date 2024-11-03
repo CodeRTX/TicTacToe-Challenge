@@ -36,13 +36,13 @@ Welcome to the TicTacToe-Challenge repository! This project showcases Tic-Tac-To
    ```sh
     javac TicTacToe.java
     java TicTacToe
-
+   
 ### HTML/CSS/JS Implementation
 
 1. Clone the repository:
    ```sh
     git clone https://github.com/yourusername/TicTacToeShowcase.git
-2. Open the index.html file in your web browser.
+2. Open the `.html` file in your web browser.
 
 ### Java UI Implementation
 
