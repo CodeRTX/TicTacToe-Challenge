@@ -37,6 +37,7 @@ Welcome to the TicTacToe-Challenge repository! This project showcases Tic-Tac-To
     javac TicTacToe.java
     java TicTacToe
 <br>
+
 ### HTML/CSS/JS Implementation
 
 1. Clone the repository:
@@ -44,6 +45,7 @@ Welcome to the TicTacToe-Challenge repository! This project showcases Tic-Tac-To
     git clone https://github.com/yourusername/TicTacToeShowcase.git
 2. Open the `.html` file in your web browser.
 <br>
+
 ### Java UI Implementation
 
 1. Clone the repository:
