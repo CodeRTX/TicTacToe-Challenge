@@ -70,5 +70,5 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 - `LICENSE`: The license for the project.
 - `README.md`: This file.
 - `TicTacToe.html`: The HTML file for the web-based implementation.
-- `TicTacToeConsole.java`: The Java file for the console-based implementation.
-- `TicTacToeUI.java`: The Java file for the UI-based implementation.
+- `TicTacToe-Console.java`: The Java file for the console-based implementation.
+- `TicTacToe-UI.java`: The Java file for the UI-based implementation.
