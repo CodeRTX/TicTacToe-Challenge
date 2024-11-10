@@ -250,7 +250,13 @@ button {
         const [a, b, c] = winningConditions[i];
         if (board[a] === player && board[a] === board[b] && board[a] === board[c]) {
             if (updateGameState) {
-                statusDisplay.textContent = `Player ${player} wins!`;
+                let message;
+                if (botMode) {
+                    message = player === 'X' ? 'You Won!' : 'You Lost!';
+                } else {
+                    message = `Player ${player === 'X' ? '1' : '2'} Wins!`;
+                }
+                statusDisplay.textContent = message;
                 gameActive = false;
                 cells[a].style.backgroundColor = '#4CAF50';
                 cells[b].style.backgroundColor = '#4CAF50';
