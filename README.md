@@ -16,7 +16,8 @@ Welcome to the TicTacToe-Challenge repository! This project showcases Tic-Tac-To
 
 ### Java UI Game
 
-![Java UI Game](snapshots/java_ui_game.png)
+![Java UI Game](snapshots/java_ui_game1.jpg)
+![Java UI Game](snapshots/java_ui_game2.jpg)
 
 ### Web Game
 
