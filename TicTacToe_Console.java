@@ -1,10 +1,10 @@
 import java.util.*;
 
-class TicTacToe {
+class TicTacToe_Console {
     private char[] board;
     private char currentPlayer;
 
-    TicTacToe() {
+    TicTacToe_Console() {
         this.board = new char[9];
         resetBoard();
         this.currentPlayer = 'X';
@@ -12,7 +12,7 @@ class TicTacToe {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        TicTacToe game = new TicTacToe();
+        TicTacToe_Console game = new TicTacToe_Console();
 
         while (true) {
             boolean playerFirst = game.promptPlayerFirst(sc);
