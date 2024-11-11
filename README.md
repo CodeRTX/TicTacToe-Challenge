@@ -57,8 +57,8 @@ Welcome to the TicTacToe-Challenge repository! This project showcases Tic-Tac-To
    cd TicTacToe-Challenge/java
 3. Compile and run the Java program:
    ```sh
-   javac TicTacToeUI.java
-   java TicTacToeUI
+   javac TicTacToe-UI.java
+   java TicTacToe-UI
 
 ## Contributing
 
