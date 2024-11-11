@@ -35,8 +35,8 @@ Welcome to the TicTacToe-Challenge repository! This project showcases Tic-Tac-To
     cd TicTacToeShowcase/java
 3. Compile and run the Java program:
    ```sh
-    javac TicTacToe.java
-    java TicTacToe
+    javac TicTacToe_Console.java
+    java TicTacToe_Console
 <br>
 
 ### HTML/CSS/JS Implementation
@@ -57,8 +57,8 @@ Welcome to the TicTacToe-Challenge repository! This project showcases Tic-Tac-To
    cd TicTacToe-Challenge/java
 3. Compile and run the Java program:
    ```sh
-   javac TicTacToe-UI.java
-   java TicTacToe-UI
+   javac TicTacToe_UI.java
+   java TicTacToe_UI
 
 ## Contributing
 
@@ -71,5 +71,5 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 - `LICENSE`: The license for the project.
 - `README.md`: This file.
 - `TicTacToe.html`: The HTML file for the web-based implementation.
-- `TicTacToe-Console.java`: The Java file for the console-based implementation.
-- `TicTacToe-UI.java`: The Java file for the UI-based implementation.
+- `TicTacToe_Console.java`: The Java file for the console-based implementation.
+- `TicTacToe_UI.java`: The Java file for the UI-based implementation.
